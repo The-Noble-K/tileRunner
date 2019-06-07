@@ -29,7 +29,7 @@ export default class GameScene extends Phaser.Scene {
       key: 'run',
       frameRate: 3,
       repeat: -1,
-      frames: this.anims.generateFrameNames('run' {
+      frames: this.anims.generateFrameNames('run', {
         prefix: 'ninjaatlas_',
         suffix: '.png',
         start: 01,
