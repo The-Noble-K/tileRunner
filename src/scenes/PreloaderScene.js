@@ -10,8 +10,6 @@ export default class PreloaderScene extends Phaser.Scene {
   }
 
   preload () {
-    // add logo image
-    this.add.image(400, 200, 'logo');
 
     // display progress bar
     var progressBar = this.add.graphics();
@@ -86,6 +84,11 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.image('box', 'assets/ui/grey_box.png');
     this.load.image('checkedBox', 'assets/ui/blue_boxCheckmark.png');
     this.load.audio('bgMusic', ['assets/TownTheme.mp3']);
+    this.load.tilemapTiledJSON('tilemap', 'assets/tilemap.json');
+    this.load.image('tileset', 'assets/tileset.png');
+    this.load.image('bg', 'assets/background.png');
+    this.load.image('fg', 'assets/foreground.png');
+    this.load.atlas('player', 'assets/Atlas/ninjaAtlas.png', 'assets/Atlas/ninjaAtlas.json');
   }
 
   ready () {

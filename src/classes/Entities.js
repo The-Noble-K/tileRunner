@@ -1,7 +1,7 @@
 export default class Player extends Phaser.GameObjects.Sprite {
 
     constructor(scene, x, y, key) {
-        super(scene, x, y, key, 'playerIdle');
+        super(scene, x, y, key, 'ninja');
         this.scene = scene;
         this.scene.add.existing(this);
         this.scene.physics.world.enableBody(this, 0);
