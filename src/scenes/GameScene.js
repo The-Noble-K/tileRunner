@@ -1,5 +1,4 @@
 import 'phaser';
-import {Player} from '../classes/Entities.js'
 
 export default class GameScene extends Phaser.Scene {
   constructor () {
@@ -12,30 +11,9 @@ export default class GameScene extends Phaser.Scene {
     this.load.image('tileset', 'assets/tileset.png');
     this.load.image('bg', 'assets/background.png');
     this.load.image('fg', 'assets/foreground.png');
-    this.load.atlas('ninja', 'assets/Atlas/ninjaAtlas.png', 'assets/Atlas/ninjaAtlas.json');
+    this.load.atlas('masterNinja', 'assets/Atlas/masterNinja.png', 'assets/Atlas/masterNinja.json');
 
-    this.anims.create({
-      key: 'idle',
-      frameRate: 4,
-      repeat: -1,
-      frames: this.anims.generateFrameNames('idle', {
-          prefix: 'ninjaatlas_',
-          suffix: '.png',
-          start: 40,
-          end: 43
-      })
-    });
-    this.anims.create({
-      key: 'run',
-      frameRate: 3,
-      repeat: -1,
-      frames: this.anims.generateFrameNames('run', {
-        prefix: 'ninjaatlas_',
-        suffix: '.png',
-        start: 01,
-        end: 03
-      })
-    });
+    /*
     this.anims.create({
       key: 'sneak',
       frameRate: 6,
@@ -58,7 +36,52 @@ export default class GameScene extends Phaser.Scene {
         end: 07
       })
     });
-
+    this.anims.create({
+      key: 'hurt',
+      frameRate: 5,
+      repeat: -1,
+      frames: this.anims.generateFrameNames('hurt', {
+        prefix: 'ninjaatlas_',
+        suffix: '.png',
+        start: 24,
+        end: 28
+      })
+    });
+    this.anims.create({
+      key: 'throw',
+      frameRate: 5,
+      repeat: -1,
+      frames: this.anims.generateFrameNames('throw', {
+        prefix: 'ninjaatlas_',
+        suffix: '.png',
+        start: 35,
+        end: 39
+      })
+    });
+    this.anims.create({
+      key: 'slash',
+      frameRate: 5,
+      repeat: -1,
+      frames: this.anims.generateFrameNames('slash', {
+        prefix: 'ninjaatlas_',
+        suffix: '.png',
+        start: 15,
+        end: 19
+      })
+    });
+    this.anims.create({
+      key: 'bounce',
+      frameRate: 4,
+      repeat: -1,
+      frames: this.anims.generateFrameNames('bounce', {
+        prefix: 'ninjaatlas_',
+        suffix: '.png',
+        start: 21,
+        end: 24
+      })
+    });
+    */
+    
   }
 
   create () {
@@ -78,9 +101,41 @@ export default class GameScene extends Phaser.Scene {
     this.physics.world.bounds.height = layer.height;
 
     //Instantiate Player
-    var player = new Player(16, 576, 'ninja', 'ninjaatlas_40.png');
+    var player = this.add.sprite(16, 576, 'masterNinja', 'assets/Atlas/images/ninja40.png');
     console.log(player);
-    player.play('idle');
+     //Add Player Animations
+    var idleFrames = this.anims.generateFrameNames('masterNinja', {
+                          start: 40, end: 43, zeroPad: 2,
+                          prefix: 'images/ninja', suffix: '.png'
+    });
+    this.anims.create({ key: 'idle', frames: idleFrames, frameRate: 10, repeat: -1 });
+    player.anims.play('idle');
+   
+    /*
+    this.anims.create({
+      key: 'run',
+      frameRate: 3,
+      repeat: -1,
+      frames: this.anims.generateFrameNames('run', {
+        prefix: 'ninja',
+        suffix: '.png',
+        start: 1,
+        end: 3
+      })
+    });
+    this.textures.addSpriteSheetFromAtlas('ninja', { frameWidth: 24, frameHeight: 21, atlas: 'ninja', frame: 'ninjatlas'})
+    this.anims.create({
+      key: 'jump',
+      frameRate: 8,
+      repeat: -1,
+      frames: this.anims.generateFrameNames('jump', {
+        prefix: 'ninja',
+        suffix: '.png',
+        start: 8,
+        end: 15
+      })
+    });
+    */
 
     //Add Key Detection
     this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
